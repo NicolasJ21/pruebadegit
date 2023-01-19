@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <ion-label>Catalogo</ion-label>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button fill="outline">Salir</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-progress-bar *ngIf="catalogoS.cargando"
+  type="indeterminate">
+</ion-progress-bar>
+  <ion-list *ngIf="catalogoS.catalogo && !catalogoS.cargando">
+    <ion-item [routerLink]="['/detalle',producto.id]"  detail="true" *ngFor="let producto of catalogoS.catalogo?.products" [id]="producto.id">
+      <ion-avatar slot="start">
+        <img [src]="producto.images[0]" loading="lazy" >
+      </ion-avatar>
+      <ion-label>
+        <h3>{{producto.title}}</h3>
+        <p> $ {{producto.price}}</p>
+        <ion-note>Descuento : ${{producto.discountPercentage}}</ion-note>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

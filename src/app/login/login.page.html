@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <ion-label>Bienvenido</ion-label>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formulario" (ngSubmit)="enviar()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked">Usuario</ion-label>
+            <ion-input formControlName="username" [disabled]="auth.cargando"  placeholder="Ingrese su usuario"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked">Contraseña</ion-label>
+            <ion-input type="password" formControlName="password" [disabled]="auth.cargando" placeholder="Ingrese su contraseña"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label> Recuerdame</ion-label>
+            <ion-toggle formControlName="activo" [disabled]="auth.cargando" ></ion-toggle>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button [disabled]="auth.cargando" type="submit" expand="full" role="submit">Iniciar Sesión</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-progress-bar *ngIf="auth.cargando" type="indeterminate"></ion-progress-bar>
+      <ion-row>
+        <ion-col>
+          <ion-button [routerLink]="['/registro']" fill="clear" expand="full">
+            ¿No tienes cuenta?
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

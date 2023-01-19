@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <ion-label>Nueva cuenta</ion-label>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Volver" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formulario" (ngSubmit)="registrar()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked">Nombre completo</ion-label>
+            <ion-input placeholder="Ingrese el nombre" formControlName="firstName"
+              [disabled]="registroS.cargando"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked">Apellido</ion-label>
+            <ion-input placeholder="ingrese su apellido" formControlName="lastName"
+              [disabled]="registroS.cargando"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked">Edad</ion-label>
+            <ion-input type="number" placeholder="Ingrese su edad" formControlName="age"
+              [disabled]="registroS.cargando"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked">usuario</ion-label>
+            <ion-input formControlName="username" [disabled]="registroS.cargando"
+              placeholder="Ingrese su usuario"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked">Contraseña</ion-label>
+            <ion-input formControlName="password" [disabled]="registroS.cargando" type="password"
+              placeholder="Ingrese su contraseña"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+
+        <ion-col>
+          <ion-item>
+            <ion-label >
+              Fecha de Nacimiento
+            </ion-label>
+            <ion-datetime-button [disabled]="registroS.cargando"
+              datetime="fechaNacimiento"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime formControlName="birthDate" id="fechaNacimiento" presentation="date" [max]="fechaMaxima.toISOString()"></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked">Genero</ion-label>
+            <ion-segment formControlName="gender" [disabled]="registroS.cargando">
+              <ion-segment-button value="Male">Masculino</ion-segment-button>
+              <ion-segment-button value="Female">Femenino</ion-segment-button>
+            </ion-segment>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" role="submit" expand="full" [disabled]="registroS.cargando">Registrar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
